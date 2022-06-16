@@ -1,0 +1,15 @@
+  [{
+          "pk": 2,
+          "model": "products.product",
+          "fields": {
+              "sku": "pp5001426756",
+              "name": "Fender Custom Shop CuNiFe Telecaster Custom, Aged Chartreuse Sparkle",
+              "description": "The Fender Custom Shop CuNiFe Telecaster revives a classic tone, encompassing all the traditional Fender characteristics that made the Telecaster so iconic - this guitar brings them into the modern era. Upholding Fender Custom Shop's prestige, this Telecaster is built to a level of excellence and craftsmanship only achievable with the utmost delicacy.",
+              "price": 4399,
+              "category": 1,
+              "rating": 4.6,
+              "image_url": "",
+              "image": "56746.jpg"
+          }
+      }
+  ]
