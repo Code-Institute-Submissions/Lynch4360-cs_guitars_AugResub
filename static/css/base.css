@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
+    background: url('/media/background.jpg') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 164px);
     color: #555;
@@ -50,6 +50,10 @@ body {
 
 .text-black {
     color: #000 !important;
+}
+
+.text-white {
+    color: #fff !important;
 }
 
 .border-black {
