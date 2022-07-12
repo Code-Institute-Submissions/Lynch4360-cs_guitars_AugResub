@@ -69,6 +69,10 @@ body {
     border: 1px solid black !important;
 }
 
+.product-details-container {
+    background: var(--secondary-color);
+}
+
 .cover {
     height: 100%;
     width: 100%;
@@ -100,5 +104,16 @@ body {
 
     .header-container {
         padding-top: 164px;
+    }
+}
+
+/* Add padding to top when on mobile screens */
+@media (max-width: 991px) {
+    .header-container {
+        padding-top: 115px;
+    }
+
+    body {
+        height: calc(100vh - 115px);
     }
 }
