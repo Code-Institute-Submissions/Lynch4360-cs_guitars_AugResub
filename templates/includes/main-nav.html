@@ -8,7 +8,7 @@
                 <a href="" class="dropdown-item">By Price</a>
                 <a href="" class="dropdown-item ">By Rating</a>
                 <a href="" class="dropdown-item ">By Category</a>
-                <a href="" class="dropdown-item">All Products</a>
+                <a href="{% url 'products' %}" class="dropdown-item">All Products</a>
             </div>
         </li>
 
@@ -17,10 +17,10 @@
                 Guitars
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="guitars-link">
-                <a href="" class="dropdown-item">Electric Guitars</a>
-                <a href="" class="dropdown-item">Acoustic Guitars</a>
-                <a href="" class="dropdown-item">Bass Guitars</a>
-                <a href="" class="dropdown-item">Accessories</a>
+                <a href="{% url 'products' %}?category=electric_guitars" class="dropdown-item">Electric Guitars</a>
+                <a href="{% url 'products' %}?category=acoustic_guitars" class="dropdown-item">Acoustic Guitars</a>
+                <a href="{% url 'products' %}?category=bass_guitars" class="dropdown-item">Bass Guitars</a>
+                <a href="{% url 'products' %}?category=accessories" class="dropdown-item">Accessories</a>
             </div>
         </li>
 
@@ -29,9 +29,9 @@
                 Amps + Pedals
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="ampspedals-link">
-                <a href="" class="dropdown-item">Boutique Amps</a>
-                <a href="" class="dropdown-item">Vintage Amps</a>
-                <a href="" class="dropdown-item">Pedals</a>
+                <a href="{% url 'products' %}?category=boutique_amps" class="dropdown-item">Boutique Amps</a>
+                <a href="{% url 'products' %}?category=vintage_amps" class="dropdown-item">Vintage Amps</a>
+                <a href="{% url 'products' %}?category=pedals" class="dropdown-item">Pedals</a>
             </div>
         </li>
 
@@ -40,10 +40,10 @@
                 Special Offers
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="specials-link">
-                <a href="" class="dropdown-item">New Arrivals</a>
-                <a href="" class="dropdown-item">Deals</a>
-                <a href="" class="dropdown-item">Clearance</a>
-                <a href="" class="dropdown-item">All Specials</a>
+                <a href="{% url 'products' %}?category=new_arrivals" class="dropdown-item">New Arrivals</a>
+                <a href="{% url 'products' %}?category=deals" class="dropdown-item">Deals</a>
+                <a href="{% url 'products' %}?category=clearance" class="dropdown-item">Clearance</a>
+                <a href="{% url 'products' %}?category=new_arrivals,deals,clearance" class="dropdown-item">All Specials</a>
             </div>
         </li>
     </ul>
