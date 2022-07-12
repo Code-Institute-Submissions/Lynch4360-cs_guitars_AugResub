@@ -62,11 +62,21 @@ body {
 }
 
 .text-white {
-    color: #fff !important;
+    color: #000 !important;
 }
 
 .border-black {
     border: 1px solid black !important;
+}
+
+.cover {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: black;
+    z-index: -1;
 }
 
 /* -------------------------------- Media Queries */
