@@ -46,13 +46,25 @@
                 <form class="form" action="{% url 'add_to_cart' product.id %}" method="POST">
                     {% csrf_token %}
                     <div class="form-row">
+                        {% with product.tuner_variation as t %}
+                        {% if t %}
+                            <div class="col-12">
+                                <p><strong>Tuner type:</strong></p>
+                                <select name="Tuner Type:" id="id_tuner_variation" class="form-control rounded-0 w-50">
+                                    <option value="gs" selected>Gotoh style</option>
+                                    <option value="lt">Locking Tuners</option>
+                                    <option value="vt">Vintage Tuners</option>
+                                </select>
+                            </div>
+                        {% endif %}
+                        {% endwith %}
                         {% with product.in_lefty as l %}
                         {% if l %}
                             <div class="col-12">
                                 <p><strong>Variation:</strong></p>
                                 <select name="Variation:" id="id_variation" class="form-control rounded-0 w-50">
                                     <option value="lh">Left Handed</option>
-                                    <option value="rh">Right handed</option>
+                                    <option value="rh" selected>Right handed</option>
                                 </select>
                             </div>
                         {% endif %}
@@ -76,6 +88,7 @@
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         {% endwith %}
+
                     </div>
                 </form>
             </div>
