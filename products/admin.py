@@ -3,14 +3,14 @@ from .models import Product, Category
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_diplay = {
+    list_display = (
         'name',
         'sku',
         'category',
         'price',
         'rating',
         'image'
-    }
+    )
 
     ordering = ('sku',)
 
