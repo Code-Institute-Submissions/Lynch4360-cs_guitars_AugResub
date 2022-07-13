@@ -11,15 +11,28 @@ def cart_contents(request):
     product_count = 0
     cart = request.session.get('cart', {})
 
-    for item_id, quantity in cart.items():
-        product = get_object_or_404(Product, pk=item_id)
-        total += quantity * product.price
-        product_count += quantity
-        cart_items.append({
-            'item_id': item_id,
-            'product': product,
-            'quantity': quantity,
-        })
+    for item_id, item_info in cart.items():
+        if isinstance(item_info, int):
+            product = get_object_or_404(Product, pk=item_id)
+            total += item_info * product.price
+            product_count += item_info
+            cart_items.append({
+                'item_id': item_id,
+                'product': product,
+                'quantity': item_info,
+            })
+        else:
+            product = get_object_or_404(Product, pk=item_id)
+            for variation, quantity in item_info['items_by_variation'].items():
+                total += quantity * product.price
+                product_count += quantity
+                cart_items.append({
+                    'item_id': item_id,
+                    'product': product,
+                    'quantity': item_info,
+                    'variation': variation,
+                })
+
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
