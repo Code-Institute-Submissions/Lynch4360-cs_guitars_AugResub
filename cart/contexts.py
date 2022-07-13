@@ -29,7 +29,7 @@ def cart_contents(request):
                 cart_items.append({
                     'item_id': item_id,
                     'product': product,
-                    'quantity': item_info,
+                    'quantity': quantity,
                     'variation': variation,
                 })
 
