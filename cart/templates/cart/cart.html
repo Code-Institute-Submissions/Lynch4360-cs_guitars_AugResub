@@ -42,6 +42,7 @@
                         </td>
                         <td class="py-3">
                             <p class="my-0 text-light">{{ item.product.name }}</p>
+                            <p class="my-0 text-light">Variation: {% if item.product.in_lefty %}{{ item.variation|upper }}{% else %}N/A{% endif %}</p>
                             <p class="my-0 small text-light">SKU: {{ item.product.sku|upper }}</p>
                         </td>
                         <td class="py-3">

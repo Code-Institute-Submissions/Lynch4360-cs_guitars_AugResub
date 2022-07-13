@@ -46,6 +46,16 @@
                 <form class="form" action="{% url 'add_to_cart' product.id %}" method="POST">
                     {% csrf_token %}
                     <div class="form-row">
+                        {% with product.in_lefty as l %}
+                        {% if l %}
+                            <div class="col-12">
+                                <p><strong>Variation:</strong></p>
+                                <select name="Variation:" id="id_variation" class="form-control rounded-0 w-50">
+                                    <option value="lh">Left Handed</option>
+                                    <option value="rh">Right handed</option>
+                                </select>
+                            </div>
+                        {% endif %}
                         <div class="col-12">
                             <p class="mt-3"><strong>Quantity:</strong></p>
                             <div class="form-group w-50">
@@ -55,7 +65,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12">
+                        <div class="col{% if l %}-12 mt-2{% endif %}">
                             <a href="{% url 'products' %}" class="btn rounded-0 mt-5">
                                 <span class="icon">
                                     <i class="fas fa-chevron-"></i>
@@ -65,6 +75,7 @@
                             <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Cart">
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        {% endwith %}
                     </div>
                 </form>
             </div>
