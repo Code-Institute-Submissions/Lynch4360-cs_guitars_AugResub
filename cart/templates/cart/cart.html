@@ -53,9 +53,10 @@
                             <p class="my-0 text-light">${{ item.product.price }}</p>
                         </td>
                         <td class="py-3">
-                            <form class="form update-form" method="POST" action="">
+                            <form class="form update-form" method="POST" action="{% url 'edit_cart' item.item_id %}">
+                                {% csrf_token %}
                                 <div class="form-group">
-                                    <div class="input-group">
+                                    <div class="input-group input-group-{{ item.item_id }}">
                                         <div class="input-group-prepend">
                                             <button class="decrement-qty btn btn-sm btn-black rounded-0"
                                                 data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
@@ -140,13 +141,13 @@
 
 <script type="text/javascript">
     // Update quantity on click
-    $('update-link').click(function(e) {
-        var form = $(this).prev('update-form');
+    $('.update-link').click(function(e) {
+        var form = $(this).prev('.update-form');
         form.submit();
     })
 
     // Remove item and reload on click
-    $('remove-item').click(function(e) {
+    $('.remove-item').click(function(e) {
         var csrfToken = "{{ csrf_token }}";
         var itemId = $(this).attr('id').split('remove_')[1];
         var variation = $(this).data('variation');
