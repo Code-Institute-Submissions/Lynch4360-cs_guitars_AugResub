@@ -32,7 +32,7 @@ def checkout(request):
             order = order_form.save()
             for item_id, item_data in cart.items():
                 try:
-                    product = Product.Objects.get(id=item_id)
+                    product = Product.objects.get(id=item_id)
                     if isinstance(item_data, int):
                         order_line_item = OrderLineItem(
                             order=order,
@@ -101,7 +101,7 @@ def checkout_success(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
     messages.success(request, f'Order Successfully processed! \
         Your order number is {order_number}. A confirmation \
-        email will be sent to {order.email.')
+        email will be sent to {order.email}')
 
     if 'cart' in request.session:
         del request.session['cart']
