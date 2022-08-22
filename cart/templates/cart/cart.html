@@ -39,7 +39,13 @@
                     {% for item in cart_items %}
                     <tr>
                         <td class="p-3 w-25">
-                            <img src="{{ item.product.image.url }}" class="img-fluid rounded">
+                            {% if item.product.image %}
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}"
+                                class="img-fluid rounded">
+                            {% else %}
+                            <img src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}"
+                                class="img-fluid rounded">
+                            {% endif %}
                         </td>
                         <td class="py-3">
                             <p class="my-0 text-light">{{ item.product.name }}</p>
@@ -84,7 +90,8 @@
                                 </div>
                             </form>
                             <a class="update-link text-info"><small>Update</small></a>
-                            <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-product-variation="{{ item.variation }}"><small>Remove</small></a>
+                            <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"
+                                data-product-variation="{{ item.variation }}"><small>Remove</small></a>
                         </td>
                         <td class="py-3">
                             <p class="my-0 text-light">${{ item.product.price | calc_subtotal:item.quantity }}</p>
@@ -142,23 +149,26 @@
 
 <script type="text/javascript">
     // Update quantity on click
-    $('.update-link').click(function(e) {
+    $('.update-link').click(function (e) {
         var form = $(this).prev('.update-form');
         form.submit();
     })
 
     // Remove item and reload on click
-    $('.remove-item').click(function(e) {
+    $('.remove-item').click(function (e) {
         var csrfToken = "{{ csrf_token }}";
         var itemId = $(this).attr('id').split('remove_')[1];
         var variation = $(this).data('product_variation');
         var url = `/cart/remove/${itemId}/`;
-        var data = {'csrfmiddlewaretoken': csrfToken, 'product_variation': variation};
+        var data = {
+            'csrfmiddlewaretoken': csrfToken,
+            'product_variation': variation
+        };
 
         $.post(url, data)
-        .done(function() {
-            location.reload();
-        });
+            .done(function () {
+                location.reload();
+            });
     })
 </script>
 {% endblock %}

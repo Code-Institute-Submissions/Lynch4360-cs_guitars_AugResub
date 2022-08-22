@@ -3,6 +3,7 @@ from django.contrib import messages
 
 from products.models import Product
 
+
 def view_cart(request):
     """ A view to return the shopping cart contents """
 
@@ -24,17 +25,21 @@ def add_to_cart(request, item_id):
         if item_id in list(cart.keys()):
             if variation in cart[item_id]['items_by_variation'].keys():
                 cart[item_id]['items_by_variation'][variation] += quantity
-                messages.success(request, f'Updated variation {variation.upper()} {product.name} quantity to {cart[item_id]["items_by_variation"][variation]}')
+                messages.success(
+                    request, f'Updated variation {variation.upper()} {product.name} quantity to {cart[item_id]["items_by_variation"][variation]}')
             else:
                 cart[item_id]['items_by_variation'][variation] = quantity
-                messages.success(request, f'Added variation {variation.upper()} {product.name} to your cart')
+                messages.success(
+                    request, f'Added variation {variation.upper()} {product.name} to your cart')
         else:
             cart[item_id] = {'items_by_variation': {variation: quantity}}
-            messages.success(request, f'Added variation {variation.upper()} {product.name} to your cart')
+            messages.success(
+                request, f'Added variation {variation.upper()} {product.name} to your cart')
     else:
         if item_id in list(cart.keys()):
             cart[item_id] += quantity
-            messages.success(request, f'Updated {product.name} quantity to {cart[item_id]}')
+            messages.success(
+                request, f'Updated {product.name} quantity to {cart[item_id]}')
         else:
             cart[item_id] = quantity
             messages.success(request, f'Added {product.name} to your cart')
@@ -56,17 +61,20 @@ def edit_cart(request, item_id):
     if variation:
         if quantity > 0:
             cart[item_id]['items_by_variation'][variation] = quantity
-            messages.success(request, f'Updated variation {variation.upper()} {product.name} quantity to {cart[item_id]["items_by_variation"][variation]}')
+            messages.success(
+                request, f'Updated variation {variation.upper()} {product.name} quantity to {cart[item_id]["items_by_variation"][variation]}')
 
         else:
             del cart[item_id]['items_by_variation'][variation]
             if not cart[item_id]['items_by_variation']:
                 cart.pop(item_id)
-                messages.success(request, f'Removed variation {variation.upper()} {product.name} to your cart')
+                messages.success(
+                    request, f'Removed variation {variation.upper()} {product.name} to your cart')
     else:
         if quantity > 0:
             cart[item_id] = quantity
-            messages.success(request, f'Updated {product.name} quantity to {cart[item_id]}')
+            messages.success(
+                request, f'Updated {product.name} quantity to {cart[item_id]}')
         else:
             cart.pop(item_id)
             messages.success(request, f'Removed {product.name} from your cart')
@@ -89,7 +97,8 @@ def remove_from_cart(request, item_id):
             del cart[item_id]['items_by_variation'][variation]
             if not cart[item_id]['items_by_variation']:
                 cart.pop(item_id)
-                messages.success(request, f'Removed variation {variation.upper()} {product.name} to your cart')
+                messages.success(
+                    request, f'Removed variation {variation.upper()} {product.name} to your cart')
 
         else:
             cart.pop(item_id)
