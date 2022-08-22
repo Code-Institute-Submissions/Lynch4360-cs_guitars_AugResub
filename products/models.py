@@ -3,7 +3,6 @@ from django.db import models
 
 class Category(models.Model):
 
-
     class Meta:
         verbose_name_plural = 'Categories'
 
@@ -22,7 +21,6 @@ class Product(models.Model):
                                  on_delete=models.SET_NULL)
     sku = models.CharField(max_length=254, null=True, blank=True)
     in_lefty = models.BooleanField(default=False, null=True, blank=True)
-    tuner_variation = models.BooleanField(default=False, null=True, blank=True)
     name = models.CharField(max_length=254)
     description = models.TextField()
     price = models.FloatField(max_length=6)
