@@ -42,6 +42,10 @@ body {
     min-width: 260px;
 }
 
+.checkout-bg {
+    background: var(--secondary-color);
+}
+
 .btn-black {
     background: black;
     color: white;
